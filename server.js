@@ -20,9 +20,9 @@ app.use((req, res, next )=>{
     next();
 })
 
-app.use((req, res, next)=>{
-    res.render('maintence.hbs')
-})
+// app.use((req, res, next)=>{
+//     res.render('maintence.hbs')
+// })
 
 app.use(express.static(__dirname + '/public'));
 hbs.registerHelper('getCurrent', () =>{
@@ -33,16 +33,23 @@ hbs.registerHelper('screamIt', (text)=>{
     return text.toUpperCase();
 })
 
-app.get('/',(req, res)=>{
-    //res.send('</h1>Hello Express</h1>');
-    res.send({
-        name: 'Byron',
-        likes: [
-            'Comics',
-            'Coding'
-        ]
+// app.get('/',(req, res)=>{
+//     //res.send('</h1>Hello Express</h1>');
+//     res.send({
+//         name: 'Byron',
+//         likes: [
+//             'Comics',
+//             'Coding'
+//         ]
+//     })
+// })
+
+app.get('/', (req,res)=>{
+    res.render('home.hbs',{
+        pageTitle: 'Home page',
+        message: 'Welcome to my home page'
     })
-})
+}); 
 
 app.get('/about', (req, res)=>{
     res.render('about.hbs',{
@@ -50,12 +57,14 @@ app.get('/about', (req, res)=>{
     })
 });
 
-app.get('/home', (req,res)=>{
-    res.render('home.hbs',{
-        pageTitle: 'Home page',
-        message: 'Welcome to my home page'
-    })
-})
+app.get('/projects',(req,res)=>{
+    res.render('projects.hbs', {
+        message:'List of projects',
+        pageTitle:'Projects'
+    });
+});
+
+
 
 // /bad -send back json with error message
 

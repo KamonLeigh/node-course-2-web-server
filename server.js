@@ -1,11 +1,12 @@
 const express = require("express");
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000;
 
 let app = express();
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
-a
+
 app.use((req, res, next )=>{
     let now = new Date().toString();
     let log = `${now}: ${req.method} ${req.url}`;
@@ -64,6 +65,6 @@ app.get('/back', (req,res)=>{
     })
 })
 
-app.listen(3000, ()=>{
-    console.log('Server is up on 3000');
+app.listen(port, ()=>{
+    console.log(`Server is up on port ${port}`);
 });
